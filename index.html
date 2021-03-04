@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Catch the money</title>
+<canvas id="canvas"></canvas>
+<style>
+    html,
+    body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+</style>
+<img src="money_bag.png" id="money_bag_img">
+</head>
+
+<body>
+<script>
+let canvas, context;
+let img
+let x = 0
+window.onload = init;
+function init(){
+    canvas = document.getElementById('canvas');
+
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
+    
+    context = canvas.getContext('2d');
+    img = document.getElementById("money_bag_img");
+    window.requestAnimationFrame(game_loop);
+    setInterval(function(){
+      x = 100
+    }, 2000);
+}
+
+function game_loop(){
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(img, x, 0);
+    window.requestAnimationFrame(game_loop);
+}
+
+</script>
+</body>
+</html>
