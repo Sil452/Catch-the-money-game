@@ -41,7 +41,12 @@ function game_loop(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(img, x, y);
     context.font = "100px Arial";
-    context.fillStyle = 'green';
+    if(score < 1000){
+      context.fillStyle = 'red';
+    }
+    else{
+      context.fillStyle = 'blue';
+    }
     context.fillText("score:" + score, 0, 75);
     window.requestAnimationFrame(game_loop);
 }
