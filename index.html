@@ -19,7 +19,7 @@ let canvas, context;
 let img
 let x = 0
 let y = 0
-let click_count = 0;
+let score = 1000;
 window.onload = init;
 function init(){
     canvas = document.getElementById('canvas');
@@ -33,6 +33,7 @@ function init(){
     setInterval(function(){
       x = getRandomInt(0, canvas.width - img.width);
       y = getRandomInt(0, canvas.height - img.height);
+      score -= 25;
     }, 1000);
 }
 
@@ -41,7 +42,7 @@ function game_loop(){
     context.drawImage(img, x, y);
     context.font = "100px Arial";
     context.fillStyle = 'green';
-    context.fillText('hello world', 0, 75);
+    context.fillText("score:" + score, 0, 75);
     window.requestAnimationFrame(game_loop);
 }
 
@@ -52,8 +53,12 @@ function getRandomInt(min, max) {
 }
 
 document.addEventListener("click", function(event){
-   click_count += 1;
-   alert(click_count)
+  if(event.clientX > x && event.clientY > y  && event.clientX < x + img.width && event.clientY < y + img.height ){
+    score += 125;
+  }
+  else{
+    score -= 100;
+  }
 });
 </script>
 </body>
